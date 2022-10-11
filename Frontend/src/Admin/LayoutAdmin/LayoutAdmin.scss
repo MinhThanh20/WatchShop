@@ -1,0 +1,33 @@
+#left{
+  width:250px;
+  }
+  
+  #left h1{
+  background:#99CC00;
+  color:#FFFFFF;
+  font-size:18px;
+  text-align:center;
+  }
+  
+  #left ul{
+  list-style-type:none;
+  margin:0px;
+  padding:0px;
+  }
+  
+  #left ul a{
+  text-decoration:none;
+  line-height:40px;
+  color:#333333;
+  background:#EEEEEE;
+  display:block;
+  width:250px;
+  border-top:1px solid #FFFFFF;
+  border-bottom:1px solid #CCCCCC;
+  padding-left:15px;
+  }
+  
+  #left ul a:hover{
+  background:#FFCC99;
+  }
+  
