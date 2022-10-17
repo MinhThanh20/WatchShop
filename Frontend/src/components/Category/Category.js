@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios'
 import Skeleton from "react-loading-skeleton";
 function Category() {
+    const params = useParams()
+    // console.log(params.category)
     const severPublic = 'http://localhost:8000/images/'
-    let str = '/category/'
-    let url = window.location.pathname
-    let category = url.slice(str.length)
+    // let str = '/category/'
+    // let url = window.location.pathname
+    // let category = url.slice(str.length)
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        axios.get(`http://localhost:8000/product/category/${category}`)
+        axios.get(`http://localhost:8000/product/category/${params.category}`)
             .then(response => {
                 setProduct(response.data)
 
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [params.category])
     const Loading = () => {
         return (
             <>

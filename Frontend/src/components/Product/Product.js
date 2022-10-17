@@ -14,7 +14,7 @@ function Product() {
       })
       .catch(err => console.log(err))
   }, [])
-  console.log(product);
+ 
   const Loading = () => {
     return (
       <>

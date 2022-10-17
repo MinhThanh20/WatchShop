@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React  from "react";
 import { NavLink } from "react-router-dom";
 import '../Header1/Header1.scss'
 import image1 from "../../../Assest/img/logo.png"
+import {useSelector} from "react-redux";
 function Header1() {
-    const [user, setUser ] = useState(null)
+   const user = useSelector((state)=> state.auth.login.currentUser)
+    console.log(user);
+
     return (
         <>
             <div>
@@ -32,7 +35,7 @@ function Header1() {
                                     <i className="fa fa-search"></i>
                                 </NavLink>
                                 <button className="btn btn-outline-dark ms-2 dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" >
-                                    <i className="fa fa-user">{user}</i>
+                                    <i className="fa fa-user"> {user} </i>
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                     <li><NavLink className="dropdown-item" to="/layout">Profile</NavLink></li>

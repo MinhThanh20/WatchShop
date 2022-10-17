@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './Login.scss'
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
 import { loginUser } from "../Redux/AuthApiRequest";
 import {useDispatch} from "react-redux"
 function Login() {
@@ -10,17 +9,11 @@ function Login() {
    const [password, setPassword] = useState("")
    const dispatch = useDispatch()
    const navigate = useNavigate() 
-//    const handleChange=(e)=> {
-//     const name = e.target.name
-//     const value = e.target.value
-//     setData({...data, [name]: value})
-//    }
     const Login =(e)=>{
         e.preventDefault()
-        // axios.post("http://localhost:8000/auth/login", data)
         const newUser = {
             username: username,
-            password: password
+            password: password,
         }
         loginUser(newUser, dispatch, navigate );
     }
