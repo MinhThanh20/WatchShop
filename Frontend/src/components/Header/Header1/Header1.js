@@ -39,7 +39,7 @@ function Header1() {
                 <NavLink to="/search" className="btn btn-outline-dark">
                   <i className="fa fa-search"></i>
                 </NavLink>
-                {user !== null ? (
+                {user ? (
                   <>
                     <button
                       className="btn btn-outline-dark ms-2 dropdown-toggle"
