@@ -2,11 +2,8 @@ import React  from "react";
 import { NavLink } from "react-router-dom";
 import '../Header1/Header1.scss'
 import image1 from "../../../Assest/img/logo.png"
-import {useSelector} from "react-redux";
 function Header1() {
-   const user = useSelector((state)=> state.auth.login.currentUser)
-    console.log(user);
-
+    const [user, setUser ] = useState(null)
     return (
         <>
             <div>
@@ -35,7 +32,7 @@ function Header1() {
                                     <i className="fa fa-search"></i>
                                 </NavLink>
                                 <button className="btn btn-outline-dark ms-2 dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" >
-                                    <i className="fa fa-user"> {user} </i>
+                                    <i className="fa fa-user">{user}</i>
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                     <li><NavLink className="dropdown-item" to="/layout">Profile</NavLink></li>
@@ -52,13 +49,12 @@ function Header1() {
                             {/* <NavLink to="/login" className="btn btn-outline-dark ms-2">
                                     <i className="fa fa-user"></i>
                                 </NavLink> */}
-                            {/* </div> */}
-
-                        </div>
-                    </div>
-                </nav>
+              {/* </div> */}
             </div>
-        </>
-    )
+          </div>
+        </nav>
+      </div>
+    </>
+  );
 }
 export default Header1;
