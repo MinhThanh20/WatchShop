@@ -19,6 +19,7 @@ const ProductItem = ({ item, index, setListProduct }) => {
     description: "",
   });
   const [image, setImage] = useState(null);
+  const [updated, setUpdated] = useState(false);
 
   //func
   const handleChange = (e) => {
@@ -56,6 +57,7 @@ const ProductItem = ({ item, index, setListProduct }) => {
     }
     console.log(newProduct);
     await updateProduct(item._id, newProduct);
+    setUpdated(true);
     setOpenUpdate(false);
   };
   return (
@@ -64,20 +66,18 @@ const ProductItem = ({ item, index, setListProduct }) => {
       <td>
         {openUpdate ? (
           <input type="text" name="name" onChange={handleChange} />
+        ) : updated ? (
+          product.name
         ) : (
           item.name
         )}
       </td>
-      <td>
-        {openUpdate ? (
-          <input type="file" name="image" onChange={imageChange} />
-        ) : (
-          item.image
-        )}
-      </td>
+      <td>{item.image}</td>
       <td>
         {openUpdate ? (
           <input type="text" name="price" onChange={handleChange} />
+        ) : updated ? (
+          product.price
         ) : (
           item.price
         )}
@@ -85,6 +85,8 @@ const ProductItem = ({ item, index, setListProduct }) => {
       <td>
         {openUpdate ? (
           <input type="text" name="category" onChange={handleChange} />
+        ) : updated ? (
+          product.category
         ) : (
           item.category
         )}
@@ -92,6 +94,8 @@ const ProductItem = ({ item, index, setListProduct }) => {
       <td>
         {openUpdate ? (
           <input type="number" name="number" onChange={handleChange} />
+        ) : updated ? (
+          product.number
         ) : (
           item.number
         )}
@@ -99,6 +103,8 @@ const ProductItem = ({ item, index, setListProduct }) => {
       <td>
         {openUpdate ? (
           <input type="text" name="description" onChange={handleChange} />
+        ) : updated ? (
+          product.description
         ) : (
           item.description
         )}
