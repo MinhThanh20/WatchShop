@@ -9,7 +9,7 @@ function Cart() {
   const count = location.state.count;
   const price = location.state.price;
   const image = location.state.image;
-  const sum = price * count;
+  const totalPrice = price * count;
   return (
     <>
       <div className="px-4 my-5 bg-light rounded-3">
@@ -24,7 +24,7 @@ function Cart() {
               />
             </div>
             <div className="col-md-3">
-              <h5>Đồng hồ Nam</h5>
+              <h5>Giá tiền</h5>
               <p className="lead fw-bold">{price} đ</p>
             </div>
             <div className="col-md-3">
@@ -33,7 +33,7 @@ function Cart() {
             </div>
             <div className="col-md-3">
               <h5>Tổng</h5>
-              <p className="lead fw-bold">{sum} đ</p>
+              <p className="lead fw-bold">{totalPrice} đ</p>
             </div>
           </div>
         </div>
@@ -43,6 +43,12 @@ function Cart() {
           <Link
             to="/checkout"
             className="btn btn-outline-primary mb-5 w-25 mx-auto"
+            state={{
+              id: params.id,
+              totalPrice: totalPrice,
+              count: count,
+              price: price,
+            }}
           >
             Thanh Toán
           </Link>

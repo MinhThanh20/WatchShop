@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Detail_Product.scss";
 function Detail_Product() {
   const severPublic = "http://localhost:8000/images/";
@@ -9,6 +9,22 @@ function Detail_Product() {
   let url = window.location.pathname;
   let id = url.slice(str.length);
   const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
+
+  //Func
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (count < product.number) {
+      navigate(`/cart/${id}`, {
+        state: {
+          count: count,
+          price: product.price,
+          image: product.image,
+        },
+      });
+    } else alert("Quá số lượng trong kho");
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/product/${id}`)
@@ -31,6 +47,7 @@ function Detail_Product() {
             <h3 className="display-5 fw-bold">{product.name}</h3>
             <hr />
             <h2 className="my-4">{product.price} đ</h2>
+            <h5>Số lượng: {product.number}</h5>
             <p className="lead">{product.description}</p>
             <div className="buttons_added">
               <input
@@ -54,25 +71,26 @@ function Detail_Product() {
                 type="button"
                 value="+"
               />
-              <Link
+              {/* <Link
                 to={`/cart/${id}`}
                 state={{
                   count: count,
                   price: product.price,
                   image: product.image,
                 }}
+              > */}
+              <button
+                className="btn "
+                style={{
+                  marginLeft: "20px",
+                  background: "orange",
+                  color: "white",
+                }}
+                onClick={handleSubmit}
               >
-                <button
-                  className="btn "
-                  style={{
-                    marginLeft: "20px",
-                    background: "orange",
-                    color: "white",
-                  }}
-                >
-                  THÊM VÀO GIỎ
-                </button>
-              </Link>
+                THÊM VÀO GIỎ
+              </button>
+              {/* </Link> */}
             </div>
           </div>
         </div>

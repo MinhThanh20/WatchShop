@@ -1,5 +1,4 @@
 import ProductModel from "../Model/ProductModel.js";
-import OrderModel from "../Model/OrderModel.js";
 import mongoose from "mongoose";
 // Add Product
 export const addProduct = async (req, res) => {
@@ -73,21 +72,5 @@ export const deleteProduct = async (req, res) => {
 };
 
 // Order Product
-export const orderProduct = async (req, res) => {
-  const productId = req.params.id;
-  const { userId, count, totalAmount, methods, info } = req.body;
-  const data = { userId, productId, count, totalAmount, methods, info };
-  try {
-    const product = await ProductModel.findById(productId);
-    const newNumber = product.number - count;
-    console.log(product.number);
-    if (newNumber > 0) {
-      const newOrder = new OrderModel(data);
-      await newOrder.save();
-      await product.updateOne({ number: newNumber });
-      res.status(200).json("Ordered");
-    } else res.status(402).json("Out of stock");
-  } catch (error) {
-    console.log(error);
-  }
-};
+
+// Get order of user

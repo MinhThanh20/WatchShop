@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema(
     count: { type: Number },
     totalAmount: { type: Number },
     methods: { type: String },
-    info: [],
+    info: {},
     status: { type: Boolean, default: false },
   },
   { timestamps: true }

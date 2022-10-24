@@ -4,7 +4,6 @@ import {
   getAllProduct,
   getProductbyCategory,
   getProductbyId,
-  orderProduct,
   updateProduct,
 } from "../Controllers/ProductControllers.js";
 
@@ -21,6 +20,5 @@ router.get("/", getAllProduct);
 // get Product by id
 router.get("/:id", getProductbyId);
 router.get("/category/:id", getProductbyCategory);
-// order
-router.post("/:id/order", orderProduct);
+
 export default router;
