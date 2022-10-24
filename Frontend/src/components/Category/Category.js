@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import axios from 'axios'
+import { Link } from "react-router-dom";
+import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 function Category() {
