@@ -106,7 +106,7 @@ function Header1() {
             >
               {/* <div className="buttons" > */}
               <div className="dropdown">
-                {/* <input
+                <input
                   type="text"
                   placeholder="Tìm kiếm....."
                   style={{
@@ -118,7 +118,7 @@ function Header1() {
                   name="search"
                   value={search}
                   onChange={handleChange}
-                /> */}
+                />
 
                 {/* <NavLink to="/search" className="btn btn-outline-dark"> */}
                 <i
