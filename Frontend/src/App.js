@@ -8,9 +8,9 @@ import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import LayoutAdmin from "./Admin/LayoutAdmin/LayoutAdmin";
-import Layout from "./components/Profile/Layout/Layout";
-import Per_Info from "./components/Profile/Per_Info/Per_Info";
+
+// import Layout from "./components/Profile/Layout/Layout";
+// import Per_Info from "./components/Profile/Per_Info/Per_Info";
 import Category from "./components/Category/Category";
 import { useSelector } from "react-redux";
 import OrderPage from "./Admin/LayoutAdmin/OrderPage/OrderPage";
@@ -45,12 +45,6 @@ function App() {
           element={user ? <Navigate to="../" /> : <Register />}
         />
         <Route path="/category/:category" element={<Category />} />
-        <Route
-          path="/layout"
-          element={user ? <Layout /> : <Navigate to="../login" />}
-        >
-          <Route index element={<Per_Info />} />
-        </Route>
         <Route
           path="/admin/order"
           element={
