@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { getProductbyId } from "../../api/Productequest";
 import "./ResultsItem.css";
 
 const ResultsItem = ({ result }) => {
+  const navigate = useNavigate();
   const severPublic = "http://localhost:8000/images/";
   const [product, setProduct] = useState();
   useEffect(() => {
@@ -25,7 +27,14 @@ const ResultsItem = ({ result }) => {
       <div className="item-price">
         <b>{product?.price} VNĐ</b>
       </div>
-      <button className="detail-button">Chi tiết</button>
+      <button
+        className="detail-button"
+        onClick={() => {
+          navigate(`/detail/${product?._id}`);
+        }}
+      >
+        Chi tiết
+      </button>
     </div>
   );
 };
