@@ -131,9 +131,13 @@ const ProductItem = ({ item, index, setListProduct }) => {
             <FontAwesomeIcon icon={faPen} />
           </button>
         )}
-        <button onClick={handleDelete}>
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
+        {openUpdate ? (
+          ""
+        ) : (
+          <button onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        )}
       </td>
     </tr>
   );
