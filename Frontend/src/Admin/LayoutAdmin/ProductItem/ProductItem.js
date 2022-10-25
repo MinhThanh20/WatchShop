@@ -11,12 +11,11 @@ import axios from "axios";
 const ProductItem = ({ item, index, setListProduct }) => {
   const [openUpdate, setOpenUpdate] = useState(false);
   const [product, setProduct] = useState({
-    name: "",
-    image: "",
-    price: "",
-    category: "",
-    number: "",
-    description: "",
+    name: item.name,
+    price: item.price,
+    category: item.category,
+    number: item.number,
+    description: item.description,
   });
   const [image, setImage] = useState(null);
   const [updated, setUpdated] = useState(false);
@@ -65,48 +64,63 @@ const ProductItem = ({ item, index, setListProduct }) => {
       <td>{index + 1}</td>
       <td>
         {openUpdate ? (
-          <input type="text" name="name" onChange={handleChange} />
-        ) : updated ? (
-          product.name
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={product.name}
+          />
         ) : (
-          item.name
+          product.name
         )}
       </td>
       <td>{item.image}</td>
       <td>
         {openUpdate ? (
-          <input type="text" name="price" onChange={handleChange} />
-        ) : updated ? (
+          <input
+            type="text"
+            name="price"
+            value={product.price}
+            onChange={handleChange}
+          />
+        ) : (
           product.price
-        ) : (
-          item.price
         )}
       </td>
       <td>
         {openUpdate ? (
-          <input type="text" name="category" onChange={handleChange} />
-        ) : updated ? (
+          <input
+            type="text"
+            name="category"
+            onChange={handleChange}
+            value={product.category}
+          />
+        ) : (
           product.category
-        ) : (
-          item.category
         )}
       </td>
       <td>
         {openUpdate ? (
-          <input type="number" name="number" onChange={handleChange} />
-        ) : updated ? (
+          <input
+            type="number"
+            name="number"
+            onChange={handleChange}
+            value={product.number}
+          />
+        ) : (
           product.number
-        ) : (
-          item.number
         )}
       </td>
       <td>
         {openUpdate ? (
-          <input type="text" name="description" onChange={handleChange} />
-        ) : updated ? (
-          product.description
+          <input
+            type="text"
+            name="description"
+            onChange={handleChange}
+            value={product.description}
+          />
         ) : (
-          item.description
+          product.description
         )}
       </td>
       <td>
@@ -117,9 +131,13 @@ const ProductItem = ({ item, index, setListProduct }) => {
             <FontAwesomeIcon icon={faPen} />
           </button>
         )}
-        <button onClick={handleDelete}>
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
+        {openUpdate ? (
+          ""
+        ) : (
+          <button onClick={handleDelete}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        )}
       </td>
     </tr>
   );

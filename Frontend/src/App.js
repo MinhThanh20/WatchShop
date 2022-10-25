@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import OrderPage from "./Admin/LayoutAdmin/OrderPage/OrderPage";
 import WareHousePage from "./Admin/LayoutAdmin/WareHousePage/WareHousePage";
 import Order from "./components/Order/Order";
+import SearchReults from "./components/SearchResults/SearchReults";
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
   return (
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<Detail_Product />} />
+        <Route path="/search/results" element={<SearchReults />} />
         <Route
           path="/cart/:id"
           element={user ? <Cart /> : <Navigate to="../login" />}
