@@ -1,0 +1,29 @@
+.item {
+  display: flex;
+  margin: 20px;
+  background-color: rgb(241, 235, 235);
+  border-radius: 10px;
+  max-height: 200px;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.item-name {
+  margin-left: 20px;
+  line-height: 200px;
+  text-align: center;
+}
+
+.item-image {
+  object-fit: contain;
+}
+
+.item-price {
+  line-height: 200px;
+}
+
+.item > .detail-button {
+  height: 50px;
+  align-items: center;
+  align-self: center;
+}
