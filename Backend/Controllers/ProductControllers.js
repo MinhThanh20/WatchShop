@@ -11,37 +11,42 @@ export const addProduct = async (req, res) => {
   }
 };
 //Get all product
-export const getAllProduct = async(req,res) => {{
+export const getAllProduct = async (req, res) => {
+  {
     try {
-        const product = await ProductModel.find().sort({createdAt: -1})
-        res.status(200).json(product)
+      const product = await ProductModel.find().sort({ createdAt: -1 });
+      res.status(200).json(product);
     } catch (error) {
-    console.log(error);
-            }
-
-}}
-export const getProductbyId = async(req,res) =>{{
+      console.log(error);
+    }
+  }
+};
+export const getProductbyId = async (req, res) => {
+  {
     try {
-        const productbyid = await ProductModel.findOne({
-            _id : req.params.id 
-        });
-        res.status(200).json(productbyid)
+      const productbyid = await ProductModel.findOne({
+        _id: req.params.id,
+      });
+      res.status(200).json(productbyid);
+    } catch (err) {
+      console.log(err);
     }
-    catch (err){
-        console.log(err);
-    }
-}}
+  }
+};
 
 // Get products b category
-export const getProductbyCategory = async(req,res) =>{{
+export const getProductbyCategory = async (req, res) => {
+  {
     try {
-        const getProductbyCategory = await ProductModel.find({category: req.params.id});
-        res.status(200).json(getProductbyCategory)
+      const getProductbyCategory = await ProductModel.find({
+        category: req.params.id,
+      });
+      res.status(200).json(getProductbyCategory);
+    } catch (err) {
+      console.log(err);
     }
-    catch (err){
-        console.log(err);
-    }
-}}
+  }
+};
 
 //Update Product
 export const updateProduct = async (req, res) => {
@@ -65,3 +70,7 @@ export const deleteProduct = async (req, res) => {
     console.log(error);
   }
 };
+
+// Order Product
+
+// Get order of user

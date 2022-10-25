@@ -1,0 +1,5 @@
+.order-item-container {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+}

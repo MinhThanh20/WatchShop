@@ -1,0 +1,39 @@
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.order-none {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 300px;
+  min-height: 300px;
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  outline: 0;
+  padding: 10px;
+  background-color: rgb(94, 196, 145);
+  color: #fff;
+}
+
+button:hover {
+  color: rgb(94, 196, 145);
+  background-color: #fff;
+  border: 2px solid rgb(94, 196, 145);
+  padding: 8px;
+}
+
+button:disabled {
+  background-color: #ddd;
+}
+
+button:disabled:hover {
+  background-color: #ddd;
+  border: 2px solid #ddd;
+  color: #fff;
+}
