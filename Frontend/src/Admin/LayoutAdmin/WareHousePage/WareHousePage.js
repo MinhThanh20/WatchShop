@@ -20,7 +20,7 @@ const WareHousePage = () => {
   });
   const [listProduct, setListProduct] = useState([]);
   const [image, setImage] = useState(null);
-
+  const [key, setKey] = useState('')
   //Func
   const toggle = () => setModal(!modal);
 
@@ -28,6 +28,8 @@ const WareHousePage = () => {
     const name = e.target.name;
     const value = e.target.value;
     setProduct({ ...product, [name]: value });
+    setKey(e.target.value)
+
   };
 
   const imageChange = (event) => {
@@ -89,19 +91,36 @@ const WareHousePage = () => {
     fetchAllProduct();
   }, [listProduct.length]);
   console.log(listProduct.length);
-  // console.log(listProduct);
+  const listTask = listProduct.filter((item) => item.name.toLowerCase().indexOf(key) !== -1)
+
   return (
     <>
-      <ModalProduct
-        toggle={toggle}
-        modal={modal}
-        handleValue={handleValue}
-        handleAdd={handleAdd}
-        product={product}
-        handleClose={handleClose}
-        imageChange={imageChange}
-      />
-      {/* <ListProduct listProduct={listProduct} setListProduct={setListProduct} /> */}
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <div className="box">
+              <div className="container-1">
+                <input type="search" id="search" placeholder="Search..."
+                  onChange={handleValue}
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <ModalProduct
+              toggle={toggle}
+              modal={modal}
+              handleValue={handleValue}
+              handleAdd={handleAdd}
+              product={product}
+              handleClose={handleClose}
+              imageChange={imageChange}
+            />
+          </div>
+
+        </div>
+      </div>
+
       <Table bordered>
         <thead
           style={{
@@ -123,7 +142,7 @@ const WareHousePage = () => {
           </tr>
         </thead>
         <tbody>
-          {listProduct.map((item, index) => (
+          {listTask.map((item, index) => (
             <ProductItem
               item={item}
               index={index}

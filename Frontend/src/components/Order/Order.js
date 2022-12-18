@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { getOrder } from "../../api/Productequest";
 import OrderItem from "../OrderItem/OrderItem";
 import "./Order.scss";
+import { Table } from "reactstrap";
 
 const Order = () => {
   const user = useSelector((state) => state.authReducer.authData);
@@ -21,23 +22,28 @@ const Order = () => {
   }
   return (
     <div>
-      <table style={{ width: "100%" }}>
-        <tr style={{ textAlign: "center" }}>
-          <th>Tên Sản Phẩm</th>
-          <th>Số Lượng</th>
-          <th>Tổng Tiền</th>
-          <th>Trạng thái</th>
-          <th></th>
-        </tr>
-        {listOrder.map((order) => (
-          <OrderItem
-            order={order}
-            key={order._id}
-            setListOrder={setListOrder}
-            userId={userId}
-          />
-        ))}
-      </table>
+      <Table bordered>
+        <thead style={{ background: 'rgb(10, 145, 10)', color: 'white', textAlign: 'center', marginTop: '20px' }}>
+          <tr >
+            <th>Tên Sản Phẩm</th>
+            <th>Số Lượng</th>
+            <th>Tổng Tiền</th>
+            <th>Trạng thái</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {listOrder.map((order) => (
+            <OrderItem
+              order={order}
+              key={order._id}
+              setListOrder={setListOrder}
+              userId={userId}
+            />
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 };

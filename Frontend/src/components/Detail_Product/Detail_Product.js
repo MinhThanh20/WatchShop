@@ -88,7 +88,7 @@ function Detail_Product() {
                 }}
                 onClick={handleSubmit}
               >
-                THÊM VÀO GIỎ
+                MUA NGAY
               </button>
               {/* </Link> */}
             </div>

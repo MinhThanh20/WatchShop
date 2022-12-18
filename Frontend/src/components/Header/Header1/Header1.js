@@ -75,17 +75,18 @@ function Header1() {
                   type="text"
                   placeholder="Tìm kiếm....."
                   style={{
-                    borderRadius: "5px",
-                    height: "35px",
-                    marginRight: "5px",
+                    borderRadius: "10px",
+                    height: "50px",
+                    width: '35%',
+                    marginLeft: "-150px",
+                    // margin: 'auto',
                     border: "1px solid ",
+
                   }}
                   name="search"
                   value={search}
                   onChange={handleChange}
                 />
-
-                {/* <NavLink to="/search" className="btn btn-outline-dark"> */}
                 <i
                   className="fa fa-search"
                   style={{
@@ -93,10 +94,12 @@ function Header1() {
                     padding: "10px",
                     borderRadius: "5px",
                     cursor: "pointer",
+                    marginLeft: '15px',
+                    marginRight: '280px',
+
                   }}
                   onClick={handleSearch}
                 ></i>
-                {/* </NavLink> */}
                 {user ? (
                   <>
                     <button
@@ -105,18 +108,15 @@ function Header1() {
                       id="dropdownMenuButton2"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+
                     >
-                      <i className="fa fa-user">{" " + user.user.username}</i>
+                      <i className="fa fa-user">{" " + user.user.username.substring(0, 5)}</i>
                     </button>
                     <ul
                       className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton2"
+                      style={{ left: '342px' }}
                     >
-                      {/* <li>
-                        <NavLink className="dropdown-item" to="/layout">
-                          Profile
-                        </NavLink>
-                      </li> */}
                       {user.user.admin && (
                         <>
                           <NavLink className="dropdown-item" to="/admin/order">
@@ -142,22 +142,18 @@ function Header1() {
                   </>
                 ) : (
                   <NavLink className="btn btn-outline-dark" to="/login">
-                    Đăng Nhập/Đăng Kí
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
                   </NavLink>
                 )}
-                <NavLink to="/order" className="btn btn-outline-dark ms-2">
+                <NavLink to="/order" className="btn btn-outline-dark ms-2" >
                   <i className="fa fa-shopping-bag"></i>
-                  {listOrder.length !== 0 && (
+                  {/* {listOrder.length !== 0 && (
                     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                       <span class="visually-hidden">New alerts</span>
                     </span>
-                  )}
+                  )} */}
                 </NavLink>
               </div>
-              {/* <NavLink to="/login" className="btn btn-outline-dark ms-2">
-                                    <i className="fa fa-user"></i>
-                                </NavLink> */}
-              {/* </div> */}
             </div>
           </div>
         </nav>
