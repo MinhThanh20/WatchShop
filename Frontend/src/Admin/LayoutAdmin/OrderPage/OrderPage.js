@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { getAllOrder } from "../../../api/Productequest";
 import OrderItem from "../OrderItem/OrderItem";
+
+import { Radio } from "@mantine/core";
 import "./OrderPage.scss";
 const OrderPage = () => {
   const [listOrders, setListOrders] = useState([]);
+  const [value, setValue] = useState("waiting");
+
   useEffect(() => {
     const fetchAllOrder = async () => {
       const orders = await getAllOrder();
@@ -14,6 +18,11 @@ const OrderPage = () => {
   }, []);
   return (
     <div>
+      <Radio.Group value={value} onChange={setValue} withAsterisk>
+        <Radio value="waiting" label="Chờ Xác Nhận" />
+        <Radio value="accepted" label="Đã Xác Nhận" />
+        <Radio value="confirm" label="Đã Nhận Hàng" />
+      </Radio.Group>
       <table style={{ width: "100%" }}>
         <tr style={{ textAlign: "center" }}>
           <th>Người dùng</th>
@@ -25,14 +34,46 @@ const OrderPage = () => {
           <th>Trạng thái</th>
           <th></th>
         </tr>
-
-        {listOrders.map((order) => (
+        {value === "waiting" &&
+          listOrders.map(
+            (order) =>
+              order.status === value && (
+                <OrderItem
+                  order={order}
+                  key={order._id}
+                  setListOrders={setListOrders}
+                />
+              )
+          )}
+        {value === "accepted" &&
+          listOrders.map(
+            (order) =>
+              order.status === value && (
+                <OrderItem
+                  order={order}
+                  key={order._id}
+                  setListOrders={setListOrders}
+                />
+              )
+          )}
+        {value === "confirm" &&
+          listOrders.map(
+            (order) =>
+              order.status === value && (
+                <OrderItem
+                  order={order}
+                  key={order._id}
+                  setListOrders={setListOrders}
+                />
+              )
+          )}
+        {/* {listOrders.map((order) => (
           <OrderItem
             order={order}
             key={order._id}
             setListOrders={setListOrders}
           />
-        ))}
+        ))} */}
       </table>
     </div>
   );

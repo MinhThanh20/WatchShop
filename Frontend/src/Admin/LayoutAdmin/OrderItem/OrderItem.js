@@ -17,7 +17,9 @@ const OrderItem = ({ order, setListOrders }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await acceptOrder(order._id, userId);
-    setStatus(true);
+    setStatus("accepted");
+    const orders = await getAllOrder();
+    setListOrders(orders.data);
   };
   useEffect(() => {
     const getProduct = async () => {
@@ -57,11 +59,16 @@ const OrderItem = ({ order, setListOrders }) => {
         </ul>
       </td>
       <td>{order.info.desc}</td>
-      <td style={status ? { color: "green" } : { color: "red" }}>
-        {status ? "Đã Xác Nhận" : "Chờ Xác Nhận"}
+      <td style={status === "waiting" ? { color: "red" } : { color: "green" }}>
+        {status === "waiting" && "Chờ Xác Nhận"}
+        {status === "accepted" && "Đã Xác Nhận"}
+        {status === "confirm" && "Đã Giao Hàng"}
       </td>
       <td>
-        <button onClick={handleSubmit} disabled={status ? true : false}>
+        <button
+          onClick={handleSubmit}
+          disabled={status === "waiting" ? false : true}
+        >
           Xác Nhận
         </button>
       </td>
