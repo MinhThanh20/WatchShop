@@ -28,9 +28,10 @@ const WareHousePage = () => {
     const name = e.target.name;
     const value = e.target.value;
     setProduct({ ...product, [name]: value });
-    setKey(e.target.value)
-
   };
+  const handleSearch = (e) => {
+    setKey(e.target.value)
+  }
 
   const imageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -101,7 +102,7 @@ const WareHousePage = () => {
             <div className="box">
               <div className="container-1">
                 <input type="search" id="search" placeholder="Search..."
-                  onChange={handleValue}
+                  onChange={handleSearch}
                 />
               </div>
             </div>

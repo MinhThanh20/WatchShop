@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../action/AuthAction";
 function Login() {
   const user = useSelector((state) => state.authReducer.authData);
+  const error = useSelector((state) => state.authReducer);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function Login() {
       username: username,
       password: password,
     };
+
     dispatch(logIn(formData));
     {
       user && navigate("../");

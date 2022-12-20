@@ -1,16 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { deleteOrder, getOrder, getProductbyId } from "../../api/Productequest";
+import {
+  confirmOrder,
+  deleteOrder,
+  getOrder,
+  getProductbyId,
+} from "../../api/Productequest";
 import "./OrderItem.css";
 
 const OrderItem = ({ order, setListOrder, userId }) => {
   const [product, setProduct] = useState();
 
   //Func
-  const handleSubmit = async (e) => {
+  const handleCancel = async (e) => {
     e.preventDefault();
     await deleteOrder(order._id);
+    const listOrder = await getOrder(userId);
+    setListOrder(listOrder.data);
+  };
+
+  const handleConfirm = async (e) => {
+    e.preventDefault();
+    await confirmOrder(order._id, userId);
     const listOrder = await getOrder(userId);
     setListOrder(listOrder.data);
   };
@@ -27,12 +39,29 @@ const OrderItem = ({ order, setListOrder, userId }) => {
       <td className="order-name">{product?.name}</td>
       <td className="order-count">{order.count}</td>
       <td className="odder-totalAmount">{order.totalAmount} VNĐ</td>
-      <td style={order.status ? { color: "green" } : { color: "red" }}>
-        {order.status ? "Đã xác nhận" : "Chờ xác nhận"}
+      <td
+        style={
+          order.status === "waiting" ? { color: "red" } : { color: "green" }
+        }
+      >
+        {order.status === "accepted" && "Đã Xác Nhận"}
+        {order.status === "waiting" && "Chờ Xác Nhận"}
+        {order.status === "confirm" && "Đã Nhận Hàng"}
       </td>
       <td>
-        <button onClick={handleSubmit} disabled={order.status ? false : true}>
+        <button
+          onClick={handleConfirm}
+          disabled={order.status === "accepted" ? false : true}
+        >
           Đã nhận hàng
+        </button>
+      </td>
+      <td>
+        <button
+          onClick={handleCancel}
+          disabled={order.status === "confirm" ? true : false}
+        >
+          Huỷ
         </button>
       </td>
     </tr>

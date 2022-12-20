@@ -3,10 +3,15 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../Header1/Header1.scss";
 import image1 from "../../../Assest/img/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { logOut } from "../../../action/AuthAction";
+import { logOut, updateUser } from "../../../action/AuthAction";
 import { useEffect } from "react";
 import { getAllProduct, getOrder } from "../../../api/Productequest";
+import { Modal, useMantineTheme } from "@mantine/core";
+
 function Header1() {
+  const [modalOpened, setModalOpened] = useState(false);
+  const theme = useMantineTheme();
+  const [confirm, setConfirm] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.authData);
@@ -14,9 +19,28 @@ function Header1() {
   const [listOrder, setListOrder] = useState([]);
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState();
+  const [formData, setFormData] = useState({
+    _id: userId,
+    oldPassword: "",
+    password: "",
+    confirmPass: "",
+  });
 
   //Func
-  const handleChange = (e) => {
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    formData.password === formData.confirmPass
+      ? dispatch(updateUser(userId, formData))
+      : setConfirm(false);
+    setModalOpened(false);
+  };
+
+  const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
 
@@ -85,7 +109,7 @@ function Header1() {
                   }}
                   name="search"
                   value={search}
-                  onChange={handleChange}
+                  onChange={handleSearchChange}
                 />
                 <i
                   className="fa fa-search"
@@ -130,6 +154,7 @@ function Header1() {
                           </NavLink>
                         </>
                       )}
+                      <li onClick={() => setModalOpened(true)}>Đổi mật khẩu</li>
                       <li>
                         <NavLink
                           className="dropdown-item"
@@ -157,6 +182,67 @@ function Header1() {
             </div>
           </div>
         </nav>
+        <Modal
+          overlayColor={
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[9]
+              : theme.colors.gray[2]
+          }
+          overlayOpacity={0.55}
+          overlayBlur={3}
+          size="35%"
+          opened={modalOpened}
+          onClose={() => setModalOpened(false)}
+        >
+          <div>
+            <form
+              action=""
+              className="form-change-pass"
+              onSubmit={handleSubmit}
+            >
+              <h3>Đổi mật khẩu</h3>
+              <div>
+                <input
+                  type="password"
+                  className="infoInput"
+                  value={formData.oldPassword}
+                  name="oldPassword"
+                  onChange={handleChange}
+                  placeholder="Mật khẩu hiện tại"
+                />
+                <input
+                  type="password"
+                  className="infoInput"
+                  value={formData.password}
+                  name="password"
+                  onChange={handleChange}
+                  placeholder="Mật khẩu mới"
+                />
+                <input
+                  type="password"
+                  className="infoInput"
+                  value={formData.confirmPass}
+                  name="confirmPass"
+                  onChange={handleChange}
+                  placeholder="Xác nhận mật khẩu mới"
+                />
+              </div>
+              <span
+                style={{
+                  display: confirm ? "none" : "block",
+                  color: "red",
+                  fontSize: "12px",
+                  alignSelf: "flex-end",
+                }}
+              >
+                * Xác nhận mật khẩu không chính xác
+              </span>
+              <button className="button change-pass-button" type="submit">
+                Xác nhận
+              </button>
+            </form>
+          </div>
+        </Modal>
       </div>
     </>
   );

@@ -55,7 +55,7 @@ function Category() {
                       to={`../detail/${product._id}`}
                       class="btn btn-outline-dark"
                     >
-                      Buy Now
+                      CHI TIẾT
                     </Link>
                   </div>
                 </div>

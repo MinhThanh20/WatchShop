@@ -7,6 +7,7 @@ import {
   updateProduct,
 } from "../../../api/Productequest";
 import axios from "axios";
+import ModalDelete from '../ModalDelete/ModalDelete'
 
 const ProductItem = ({ item, index, setListProduct }) => {
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -19,6 +20,9 @@ const ProductItem = ({ item, index, setListProduct }) => {
   });
   const [image, setImage] = useState(null);
   const [updated, setUpdated] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
 
   //func
   const handleChange = (e) => {
@@ -37,6 +41,7 @@ const ProductItem = ({ item, index, setListProduct }) => {
     await deleteProduct(item._id);
     const products = await getAllProduct();
     setListProduct(products.data);
+    toggle()
   };
 
   const handleUpdate = async (e) => {
@@ -134,9 +139,10 @@ const ProductItem = ({ item, index, setListProduct }) => {
         {openUpdate ? (
           ""
         ) : (
-          <button onClick={handleDelete}>
-            <FontAwesomeIcon icon={faTrash} />
-          </button>
+          // <button onClick={handleDelete}>
+          //   <FontAwesomeIcon icon={faTrash} />
+          // </button>
+          <ModalDelete modal={modal} toggle={toggle} handleDelete={handleDelete} />
         )}
       </td>
     </tr>

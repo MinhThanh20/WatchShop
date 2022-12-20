@@ -34,8 +34,14 @@ function Checkout() {
       totalAmount: totalPrice,
       info: info,
     };
-    await orderProduct(id, formData);
-    navigate("/order");
+    if (info.address === "" && info.name === "" && info.mail === "" && info.mail === "") {
+      return alert('Nhập đủ thông tin')
+    }
+    else {
+
+      await orderProduct(id, formData);
+      navigate("/order");
+    }
   };
 
   useEffect(() => {
@@ -82,20 +88,6 @@ function Checkout() {
 
             <form className="card p-2">
               <h4 className="mb-3">Thanh toán</h4>
-
-              <div className="form-check">
-                <input
-                  id="credit"
-                  name="paymentMethod"
-                  type="radio"
-                  className="form-check-input"
-                  checked=""
-                  required=""
-                />
-                <label className="form-check-label" htmlFor="credit">
-                  Chuyển khoản
-                </label>
-              </div>
               <div className="form-check">
                 <input
                   id="debit"
