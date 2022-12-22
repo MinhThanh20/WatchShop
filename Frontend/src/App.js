@@ -17,6 +17,7 @@ import OrderPage from "./Admin/LayoutAdmin/OrderPage/OrderPage";
 import WareHousePage from "./Admin/LayoutAdmin/WareHousePage/WareHousePage";
 import Order from "./components/Order/Order";
 import SearchReults from "./components/SearchResults/SearchReults";
+import User from "./Admin/LayoutAdmin/User/User";
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
   return (
@@ -57,6 +58,12 @@ function App() {
           path="/admin/warehouse"
           element={
             user?.user.admin ? <WareHousePage /> : <Navigate to="../login" />
+          }
+        />
+        <Route
+          path="/admin/user"
+          element={
+            user?.user.admin ? <User /> : <Navigate to="../login" />
           }
         />
       </Routes>

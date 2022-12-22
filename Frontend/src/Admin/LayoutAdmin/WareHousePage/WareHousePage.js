@@ -10,7 +10,6 @@ const WareHousePage = () => {
   //State
   const [modal, setModal] = useState(false);
   const [checkEdit, setCheckEdit] = useState(false);
-  const [check, setCheck] = useState(false);
   const [product, setProduct] = useState({
     name: "",
     price: "",
@@ -65,12 +64,13 @@ const WareHousePage = () => {
           number: "",
           description: "",
         });
-        setCheckEdit(!checkEdit);
+        setCheckEdit(true);
         toggle();
       })
       .catch((err) => console.log(err));
     const products = await getAllProduct();
     setListProduct(products.data);
+    console.log(listProduct);
   };
 
   const handleClose = () => {
@@ -96,9 +96,9 @@ const WareHousePage = () => {
 
   return (
     <>
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
+      <div className="container text-center">
+        <div className="row">
+          <div className="col">
             <div className="box">
               <div className="container-1">
                 <input type="search" id="search" placeholder="Search..."
@@ -107,7 +107,7 @@ const WareHousePage = () => {
               </div>
             </div>
           </div>
-          <div class="col">
+          <div className="col">
             <ModalProduct
               toggle={toggle}
               modal={modal}

@@ -27,9 +27,9 @@ function Register() {
 
   return (
     <>
-      <div class="login-page">
-        <div class="form">
-          <form class="login-form" onSubmit={handleSubmit}>
+      <div className="login-page">
+        <div className="form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <input
               name="email"
               type="text"
@@ -52,7 +52,7 @@ function Register() {
               value={data.password}
             />
             <button type="submit">create</button>
-            <p class="message">
+            <p className="message">
               Already registered?
               <Link to="/login">Sign In</Link>
             </p>

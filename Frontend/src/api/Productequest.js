@@ -4,7 +4,7 @@ const API = axios.create({ baseURL: "http://localhost:8000" });
 
 // Product
 export const getProductbyId = (id) => API.get(`/product/${id}`);
-export const getAllProduct = () => API.get("/product/");
+export const getAllProduct = () => API.get(`/product/`);
 export const updateProduct = (id, formData) =>
   API.put(`/product/${id}`, formData);
 export const deleteProduct = (id) => API.delete(`/product/${id}`);

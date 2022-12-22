@@ -146,15 +146,16 @@ function Header1() {
                           <NavLink className="dropdown-item" to="/admin/order">
                             <li>Quản lý đơn hàng</li>
                           </NavLink>
-                          <NavLink
-                            className="dropdown-item"
-                            to="/admin/warehouse"
-                          >
+                          <NavLink className="dropdown-item" to="/admin/warehouse">
                             <li>Quản lý kho hàng</li>
                           </NavLink>
+                          <NavLink className="dropdown-item" to="/admin/user">
+                            <li>Danh sách khách hàng</li>
+                          </NavLink>
                         </>
+
                       )}
-                      <li onClick={() => setModalOpened(true)}>Đổi mật khẩu</li>
+                      <li style={{ marginLeft: '15px' }} onClick={() => setModalOpened(true)}>Đổi mật khẩu</li>
                       <li>
                         <NavLink
                           className="dropdown-item"
@@ -167,14 +168,14 @@ function Header1() {
                   </>
                 ) : (
                   <NavLink className="btn btn-outline-dark" to="/login">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <i className="fa fa-sign-out" aria-hidden="true"></i>
                   </NavLink>
                 )}
                 <NavLink to="/order" className="btn btn-outline-dark ms-2" >
                   <i className="fa fa-shopping-bag"></i>
                   {/* {listOrder.length !== 0 && (
-                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                      <span class="visually-hidden">New alerts</span>
+                    <span className="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                      <span className="visually-hidden">New alerts</span>
                     </span>
                   )} */}
                 </NavLink>

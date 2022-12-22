@@ -12,23 +12,28 @@ function Login() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       username: username,
       password: password,
     };
-
-    dispatch(logIn(formData));
-    {
-      user && navigate("../");
+    await dispatch(logIn(formData));
+    if (error === false) {
+      {
+        user && navigate("../");
+        return alert('Đăng nhập thành công')
+      }
+    }
+    else {
+      return alert('Tài khoản hoặc mật khẩu ko chính xác')
     }
   };
   return (
     <>
-      <div class="login-page">
-        <div class="form">
-          <form class="login-form" onSubmit={handleSubmit}>
+      <div className="login-page">
+        <div className="form">
+          <form className="login-form" onSubmit={handleSubmit}>
             <input
               name="username"
               type="text"
@@ -42,7 +47,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">login</button>
-            <p class="message">
+            <p className="message">
               Not registered?
               <Link to="/register">Create an account</Link>
             </p>

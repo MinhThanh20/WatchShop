@@ -41,14 +41,14 @@ function Product() {
           return (
             <>
               <div className="col-md-3 mb-4">
-                <div class="card h-100 text-center p-4" key={product._id}>
-                  <img src={product.image ? severPublic + product.image : ''} class="card-img-top" height="240px" />
-                  <div class="card-body">
-                    <h8 class="card-title mb-0">{product.name}</h8>
-                    <p class="card-text lead fw-bold">
+                <div className="card h-100 text-center p-4" key={product._id}>
+                  <img src={product.image ? severPublic + product.image : ''} className="card-img-top" height="240px" />
+                  <div className="card-body">
+                    <h8 className="card-title mb-0">{product.name}</h8>
+                    <p className="card-text lead fw-bold">
                       {product.price} đ
                     </p>
-                    <Link to={`detail/${product._id}`} class="btn btn-outline-dark">
+                    <Link to={`detail/${product._id}`} className="btn btn-outline-dark">
                       CHI TIẾT
                     </Link>
                   </div>
