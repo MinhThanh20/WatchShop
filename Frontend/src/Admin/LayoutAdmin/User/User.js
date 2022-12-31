@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { getAllUser } from "../../../api/UserRequest";
+import { faCheck, faX } from "@fortawesome/free-solid-svg-icons";
+import { getAllUser, deleteUser } from "../../../api/UserRequest";
 import ModalDeleteUser from '../ModalDeleteUser/ModalDeleteUser'
 const User = () => {
     const [user, setUser] = useState([])
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
-
+    const [check, setCheck] = useState(false)
     useEffect(() => {
         const fetchAllUser = async () => {
             const res = await getAllUser();
             setUser(res.data);
         };
         fetchAllUser();
-    }, []);
-    console.log(user);
+    }, [check]);
+
     return (
         <>
             <Table bordered>
@@ -26,6 +26,7 @@ const User = () => {
                         <th>STT</th>
                         <th>UserName</th>
                         <th>Email</th>
+                        <th>Admin</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,8 +38,19 @@ const User = () => {
                                 <td>{index + 1}</td>
                                 <td>{item.username}</td>
                                 <td>{item.email}</td>
+                                <td>{item.admin === false ?
+                                    <FontAwesomeIcon icon={faX} />
+                                    :
+                                    <FontAwesomeIcon style={{ color: 'red' }} icon={faCheck} />}
+                                </td>
                                 <td>
-                                    <ModalDeleteUser modal={modal} toggle={toggle} />
+                                    <ModalDeleteUser
+                                        modal={modal}
+                                        toggle={toggle}
+                                        item={item}
+                                        setCheck={setCheck}
+                                        index={index}
+                                    />
                                 </td>
                             </tr>
                         )

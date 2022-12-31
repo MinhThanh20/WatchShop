@@ -21,7 +21,7 @@ const OrderPage = () => {
     <div>
       <Radio.Group value={value} onChange={setValue} withAsterisk>
         <Radio value="waiting" label="Chờ Xác Nhận" />
-        <Radio value="accepted" label="Đã Xác Nhận" />
+        <Radio value="accepted" label="Đang giao hàng" />
         <Radio value="confirm" label="Giao hàng thành công" />
       </Radio.Group>
       <table style={{ width: "100%", marginTop: '30px', marginBottom: '30px' }}>

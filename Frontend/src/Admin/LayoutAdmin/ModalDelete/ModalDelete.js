@@ -18,7 +18,7 @@ function Example(props) {
       >
         <ModalHeader toggle={toggle}>Bạn có chắc chắn muốn xóa </ModalHeader>
         <ModalFooter>
-          <Button color="primary" onClick={handleDelete}>
+          <Button color="primary" onClick={(e) => handleDelete(e)}>
             Có
           </Button>{' '}
           <Button color="secondary" onClick={toggle}>

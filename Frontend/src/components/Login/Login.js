@@ -18,16 +18,16 @@ function Login() {
       username: username,
       password: password,
     };
-    await dispatch(logIn(formData));
-    if (error === false) {
-      {
-        user && navigate("../");
-        return alert('Đăng nhập thành công')
-      }
+    dispatch(logIn(formData));
+    // if (error === false) {
+    {
+      user && navigate("../");
+      // return alert('Đăng nhập thành công')
     }
-    else {
-      return alert('Tài khoản hoặc mật khẩu ko chính xác')
-    }
+    // }
+    // else {
+    //   return alert('Tài khoản hoặc mật khẩu ko chính xác')
+    // }
   };
   return (
     <>

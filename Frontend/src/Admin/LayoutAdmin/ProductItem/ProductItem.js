@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import ModalDelete from '../ModalDelete/ModalDelete'
 
-const ProductItem = ({ item, index, setListProduct }) => {
+const ProductItem = ({ item, index, setListProduct, setCheckEdit }) => {
   const [openUpdate, setOpenUpdate] = useState(false);
   const [product, setProduct] = useState({
     name: item.name,
@@ -19,7 +19,6 @@ const ProductItem = ({ item, index, setListProduct }) => {
     description: item.description,
   });
   const [image, setImage] = useState(null);
-  const [updated, setUpdated] = useState(false);
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -39,8 +38,7 @@ const ProductItem = ({ item, index, setListProduct }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     await deleteProduct(item._id);
-    const products = await getAllProduct();
-    setListProduct(products.data);
+    setCheckEdit(true);
     toggle()
   };
 
@@ -61,7 +59,7 @@ const ProductItem = ({ item, index, setListProduct }) => {
     }
     console.log(newProduct);
     await updateProduct(item._id, newProduct);
-    setUpdated(true);
+    setCheckEdit(true);
     setOpenUpdate(false);
   };
   return (

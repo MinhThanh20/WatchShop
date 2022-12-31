@@ -39,39 +39,43 @@ const WareHousePage = () => {
     }
   };
 
-  const handleAdd = async (event) => {
-    event.preventDefault();
-    const newProduct = product;
+  useEffect(() => {
+    axios.get('http://localhost:8000/product/')
+      .then(res => {
+        setListProduct(res.data)
+      })
+      .catch(err => console.log(err))
+  }, [checkEdit])
+
+  const handleAdd = (event) => {
+    event.preventDefault()
+    const newProduct = product
     if (image) {
-      const data = new FormData();
-      const filename = Date.now() + image.name;
-      data.append("name", filename);
-      data.append("file", image);
-      newProduct.image = filename;
+      const data = new FormData()
+      const filename = Date.now() + image.name
+      data.append('name', filename)
+      data.append('file', image)
+      newProduct.image = filename
       try {
-        axios.post("http://localhost:8000/upload/", data);
+        axios.post('http://localhost:8000/upload/', data)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
-    axios
-      .post("http://localhost:8000/product/", newProduct)
-      .then((res) => {
+    axios.post('http://localhost:8000/product/', newProduct)
+      .then(res => {
         setProduct({
-          name: "",
-          price: "",
-          category: "",
-          number: "",
-          description: "",
-        });
-        setCheckEdit(true);
-        toggle();
+          name: '',
+          price: '',
+          category: '',
+          number: '',
+          description: '',
+        })
+        setCheckEdit(true)
+        toggle()
       })
-      .catch((err) => console.log(err));
-    const products = await getAllProduct();
-    setListProduct(products.data);
-    console.log(listProduct);
-  };
+      .catch(err => console.log(err))
+  }
 
   const handleClose = () => {
     setProduct({
@@ -84,14 +88,7 @@ const WareHousePage = () => {
     toggle();
   };
 
-  useEffect(() => {
-    const fetchAllProduct = async () => {
-      const products = await getAllProduct();
-      setListProduct(products.data);
-    };
-    fetchAllProduct();
-  }, [listProduct.length]);
-  console.log(listProduct.length);
+
   const listTask = listProduct.filter((item) => item.name.toLowerCase().indexOf(key) !== -1)
 
   return (
@@ -147,7 +144,8 @@ const WareHousePage = () => {
             <ProductItem
               item={item}
               index={index}
-              setListProduct={setListProduct}
+              listProduct={listProduct}
+              setCheckEdit={setCheckEdit}
             />
           ))}
         </tbody>
